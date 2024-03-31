@@ -24,6 +24,8 @@ public class PlatformerPlayerController : MonoBehaviour
     //TriggerZone audio source
     public AudioSource triggerSound;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class PlatformerPlayerController : MonoBehaviour
        rb = GetComponent<Rigidbody2D>();
 
        playerAudio = GetComponent<AudioSource>(); 
+
+        animator = GetComponent<Animator>();
  
 
         //Ensure the groundCheck variable is assigned
@@ -62,10 +66,19 @@ public class PlatformerPlayerController : MonoBehaviour
         //Move the player using Rigidbody2D in FixedUpdate
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
+        //Set animator parameter xVelocityAbs to absolute value of x velocity
+        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
+
+        //set animator parameter yVelocity to y velocity
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
         //Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        //Optionally, you can add animations or other behavior here baed on player state
+        //set animator parameter onGround to isGrounded
+        animator.SetBool("onGround", isGrounded);
+
+        //Optionally, you can add animations or other behavior here based on player state
 
         //Ensure the player is facing the direct movement
         if (horizontalInput > 0)
