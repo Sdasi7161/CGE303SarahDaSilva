@@ -83,11 +83,12 @@ public class PlatformerPlayerController : MonoBehaviour
         //Ensure the player is facing the direct movement
         if (horizontalInput > 0)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f); // Facing right
+            //Set the rotation of the player to face right
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (horizontalInput < 0)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f); // Facing left
+            transform.rotation = Quaternion.Euler(0, 180, 0); // Facing left
         } 
     }
 
