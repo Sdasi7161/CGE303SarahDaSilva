@@ -14,7 +14,30 @@ public class ProjectileScript : MonoBehaviour
 
     // Speed of the projectile with a default value of 20
     public float speed = 20f;
-    
+
+    //Damage of the projectile with a default value 20
+    public int damage = 20;
+
+    //Function called when the projectile collides with another object
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        //Get the Enemy component of the object that was hit
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+
+        //If the object that was hit has an Enemy component
+        if(enemy != null)
+        {
+            //Call the TakeDamage function of the Enemy component
+            enemy.TakeDamage(damage);
+        }
+
+        //If the object that was hit is not the player
+        if(hitInfo.gameObject.tag != "Player")
+        {
+            //Destroy the projectile
+            Destroy(gameObject);
+        }
+    }
     //Start is called before the first frame update
     void Start()
     {
