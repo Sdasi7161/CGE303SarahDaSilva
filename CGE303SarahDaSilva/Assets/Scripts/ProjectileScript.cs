@@ -18,6 +18,9 @@ public class ProjectileScript : MonoBehaviour
     //Damage of the projectile with a default value 20
     public int damage = 20;
 
+    //Impact effect of the projectile
+    public GameObject impactEffect; 
+
     //Function called when the projectile collides with another object
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
@@ -34,6 +37,8 @@ public class ProjectileScript : MonoBehaviour
         //If the object that was hit is not the player
         if(hitInfo.gameObject.tag != "Player")
         {
+            //Instantionte the impact effect
+            Instantiate(impactEffect, transform.position, Quaternion.identity);
             //Destroy the projectile
             Destroy(gameObject);
         }
