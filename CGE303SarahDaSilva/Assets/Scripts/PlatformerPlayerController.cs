@@ -63,6 +63,11 @@ public class PlatformerPlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!PlayerHealth.hitRecently)
+        {
+            //Move the player using RigidBody2D in FixedUpdate
+            rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        }
         //Move the player using Rigidbody2D in FixedUpdate
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
