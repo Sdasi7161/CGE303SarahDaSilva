@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class EnemyMoveWalking : MonoBehaviour
+public class EnemyMovementWalkingChase : MonoBehaviour
 {
     public float chaseRange = 4f;
 
